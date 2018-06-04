@@ -51,11 +51,11 @@ public class MainActivity extends Activity implements OnItemClickListener{
 		// TODO Auto-generated method stub
 		Intent intent = new Intent();
         Class clazz = MainConstance.clazz[position % MainConstance.clazz.length];
-//        if(clazz.getSimpleName().equals(UserBackupActivity.class.getSimpleName())){
-//        	System.out.println("打开用户反馈");
-//        }else{
+        if(clazz.getSimpleName().equals(UserBackupActivity.class.getSimpleName())){
+        	MainUtils.openApk(MainActivity.this, "com.xshuai.service");
+        }else{
         	intent.setClass(MainActivity.this, clazz);
         	MainActivity.this.startActivity(intent);
-//        }
+        }
 	}
 }

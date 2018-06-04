@@ -22,12 +22,12 @@ public class MainConstance {
 		R.drawable.system_setting,R.drawable.system_update,R.drawable.projector,R.drawable.about_icon
 		};
 	
-	public static int[] TITLE = {R.string.connectivity_network, R.string.device_sound,R.string.system_date_time,R.string.system_language, 
-							     R.string.device_apps, R.string.device_storage_reset, R.string.system_keyboard, R.string.about_preference};
+	public static int[] TITLE = {R.string.connectivity_network, R.string.device_sound,R.string.system_date_time,R.string.bugreport_title, 
+							     R.string.more_settings, R.string.about_system_update, R.string.projector_settings, R.string.about_preference};
 	
 	public static Class[] clazz = {
-		NetworkActivity.class,SoundActivity.class,DateTimeActivity.class,LanguageActivity.class,
-		MainSettings.class,StorageResetActivity.class,InputsActivity.class,AboutActivity.class
+		NetworkActivity.class,SoundActivity.class,DateTimeActivity.class,UserBackupActivity.class,
+		MainSettings.class,SystemUpdateActivity.class,ProjectorActivity.class,AboutActivity.class
 		};
 	
 	

@@ -16,6 +16,9 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="bugreport_title">意見回饋</string>
+    <string name="projector_settings">投影設置</string>
+    
     <string name="settings_app_name" msgid="4243616485579754401">"設定"</string>
     <string name="launcher_settings_app_name" msgid="5782771766725939392">"設定"</string>
     <string name="launcher_network_app_name" msgid="5107150533945388559">"網路"</string>

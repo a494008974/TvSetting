@@ -16,6 +16,9 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="bugreport_title">用户反馈</string>
+    <string name="projector_settings">投影设置</string>
+    
     <string name="settings_app_name" msgid="4243616485579754401">"设置"</string>
     <string name="launcher_settings_app_name" msgid="5782771766725939392">"设置"</string>
     <string name="launcher_network_app_name" msgid="5107150533945388559">"网络"</string>
@@ -110,6 +113,8 @@
     <string name="about_version" msgid="1177287676732287266">"版本"</string>
     <string name="about_serial" msgid="2723560490027171187">"序列号"</string>
     <string name="about_build" msgid="9148789767199785676">"内部版本号"</string>
+    
+    
     <plurals name="show_dev_countdown" formatted="false" msgid="5361765297521871966">
       <item quantity="other">现在只需再执行 <xliff:g id="STEP_COUNT_1">%1$d</xliff:g> 步操作即可进入开发者模式</item>
       <item quantity="one">现在只需再执行 <xliff:g id="STEP_COUNT_0">%1$d</xliff:g> 步操作即可进入开发者模式</item>
@@ -693,7 +698,7 @@
     <string name="sound_devices_manager">音频设备管理</string>
 
     <!-- More Settins -->
-    <string name="more_settings">更多设置</string>
+    <string name="more_settings">系统设置</string>
 
     <!-- USB Settings -->
     <string name="enable_usb">USB连接状态</string>

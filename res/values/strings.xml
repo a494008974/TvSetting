@@ -15,6 +15,9 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
+    <string name="bugreport_title">User Feedback</string>
+    <string name="projector_settings">Projector Settings</string>
+    
 	<string name="no_button">Cancel</string>
 	<string name="ok_button">Save</string>
 

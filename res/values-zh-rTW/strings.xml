@@ -18,6 +18,8 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="bugreport_title">意見回饋</string>
     <string name="projector_settings">投影設置</string>
+    <string name="light_settings">亮度設置</string>
+    <string name="flip_settings">投影設置</string>
     
     <string name="settings_app_name" msgid="4243616485579754401">"設定"</string>
     <string name="launcher_settings_app_name" msgid="5782771766725939392">"設定"</string>

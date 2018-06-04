@@ -17,6 +17,8 @@
 
     <string name="bugreport_title">User Feedback</string>
     <string name="projector_settings">Projector Settings</string>
+    <string name="light_settings">Brightness Settings</string>
+    <string name="flip_settings">Projection Settings</string>
     
 	<string name="no_button">Cancel</string>
 	<string name="ok_button">Save</string>

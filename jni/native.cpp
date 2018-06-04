@@ -15,15 +15,309 @@
  */
 
 #define LOG_TAG "tvsettings.native.cpp"
-#include <utils/Log.h>
+
+#include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <android/log.h>
+#include <sys/ioctl.h>
+#include <asm/types.h>
+#include <cutils/log.h>
+#include <errno.h>
+
+#include <utils/Log.h>
 #include "jni.h"
 #include <math.h>
 #include "TVInfo.h"
 #include "Vop.h"
+
+
+
+#define LOG_TAG "PICO_JNI"
+typedef  unsigned int u32;
+#define PICO_MAGIC 'x'
+#define PICO_MAX_NR 18
+#define PICO_IOCTL_SET_POWER_LVL  _IOW(PICO_MAGIC,1,u32 *)
+#define PICO_IOCTL_SET_FLIP_NOR	  _IO(PICO_MAGIC,2)
+#define PICO_IOCTL_SET_FLIP_H     _IO(PICO_MAGIC,3)
+#define PICO_IOCTL_SET_FLIP_V     _IO(PICO_MAGIC,4)
+#define PICO_IOCTL_SET_INTF_TYPE  _IOW(PICO_MAGIC,5,u32 *)
+#define PICO_IOCTL_SET_RES		  _IOW(PICO_MAGIC,6,u32 *)
+#define PICO_IOCTL_SEL_SEQ		  _IOW(PICO_MAGIC,7,u32 *)
+#define PICO_IOCTL_SET_LED_ON     _IO(PICO_MAGIC,8)
+#define PICO_IOCTL_SET_LED_OFF     _IO(PICO_MAGIC,9)
+#define PICO_IOCTL_SET_LED_LOW     _IO(PICO_MAGIC,10)
+#define PICO_IOCTL_SYS_RESTART     _IO(PICO_MAGIC,12)
+#define PICO_IOCTL_SYS_ONLINE     _IO(PICO_MAGIC,13)
+#define PICO_IOCTL_SYS_POWER_DOWN     _IO(PICO_MAGIC,14)
+#define PICO_IOCTL_SYS_SET_POWER     _IO(PICO_MAGIC,15)
+#define PICO_IOCTL_SYS_GET_POWER     _IO(PICO_MAGIC,16)
+#define PICO_IOCTL_SYS_SET_MODE     _IO(PICO_MAGIC,17)
+#define PICO_IOCTL_SYS_GET_MODE     _IO(PICO_MAGIC,18)
+#undef LOG
+#define LOG
+
+
+#define PICO_PATH "/dev/pico"
+#define MTD_PATH "/dev/block/mmcblk0p14"
+
+#define FLIP_NOR   0
+#define FLIP_H	   1
+#define FLIP_V	   2
+
+#define POWER_0 200
+#define POWER_1 290
+#define POWER_2 380
+#define POWER_3 470
+#define POWER_4 560
+#define POWER_5 650
+#define POWER_6 740
+#define POWER_7 820
+#define POWER_8 900
+#define POWER_9 980
+
 #define MIN(a,b)                        ((a) <= (b) ? (a):(b))
 #define MAX(a,b)                        ((a) >= (b) ? (a):(b))
 #define ROUND(a)						(int)(a+0.5)
+
+
+static int str_startsWith(char * str, char * search_str)
+{
+    if ((str == NULL) || (search_str == NULL)) return 0;
+    return (strstr(str, search_str) == str);
+}
+
+static int save_pico_mode_to_mtd(int mode)
+{
+	int ret;
+	int mode_fd;
+	char buf[64]={0};
+	mode_fd = open(MTD_PATH, O_RDONLY);
+	if( mode_fd < 0 ){
+		ALOGD("Can't open %s, errno = %d", MTD_PATH, errno);
+		return -1;
+	}
+	memset(buf, 0, 64);
+	if( 0 == read(mode_fd, buf, 64) ){
+		 perror("read failed");
+		 close(mode_fd);
+		 goto done;
+	 }
+	close(mode_fd);
+	ALOGD("zhangyi jni mode=%s",buf);
+	if(str_startsWith(buf, "start:")){
+		buf[11]='0';
+		buf[12]='x';
+
+		if(mode == 1){
+			buf[13]='0';
+			buf[14]='0';
+		}else if(mode == 2){
+			buf[13]='1';
+			buf[14]='0';
+		}else if(mode == 3){
+			buf[13]='2';
+			buf[14]='0';
+		}else if(mode == 4){
+			buf[13]='3';
+			buf[14]='0';
+		}
+	}else{
+			if(mode == 1){
+				sprintf(buf,"%s","start:flip=0x00:current=0x02:end");
+			}else if(mode == 2){
+				sprintf(buf,"%s","start:flip=0x10:current=0x02:end");
+			}else if(mode == 3){
+				sprintf(buf,"%s","start:flip=0x20:current=0x02:end");
+			}else if(mode == 4){
+				sprintf(buf,"%s","start:flip=0x30:current=0x02:end");
+			}
+	}
+	close(mode_fd);
+	ALOGD("save_pico_mode_to_mtd=%s",buf);
+
+	mode_fd = open(MTD_PATH, O_RDWR);
+	if(mode_fd < 0 ){
+		ALOGD("Can't open %s, errno = %d", MTD_PATH, errno);
+		return -1;
+	}
+	if( -1 == write(mode_fd, buf, 64) ){
+		ALOGD("write failed");
+		close(mode_fd);
+		return 0;
+	}
+	close(mode_fd);
+
+done:
+	return -1;
+}
+
+
+static int save_pico_power_level_to_mtd(int level)
+{
+	int ret;
+	int power_level_fd;
+	char buf[64]={0};
+	power_level_fd = open(MTD_PATH, O_RDONLY);
+	if( power_level_fd < 0 ){
+		ALOGD("Can't open %s, errno = %d", MTD_PATH, errno);
+		return -1;
+	}
+	memset(buf, 0, 64);
+	if( 0 == read(power_level_fd, buf, 64) ){
+		 perror("read failed");
+		 close(power_level_fd);
+		 goto done;
+	 }
+	close(power_level_fd);
+	ALOGD("zhangyi jni power_level=%s",buf);
+	if(str_startsWith(buf, "start:")){
+		buf[24]='0';
+		buf[25]='x';
+		buf[26]='0';
+		buf[27]='0' + level;
+	}else{
+		sprintf(buf,"start:flip=0x00:current=0x%02x:end", level);
+	}
+	close(power_level_fd);
+	ALOGD("level_to_mtd=%s\n",buf);
+	power_level_fd = open(MTD_PATH, O_RDWR);
+	if( power_level_fd < 0 ){
+		ALOGD("Can't open %s, errno = %d", MTD_PATH, errno);
+		return -1;
+	}
+	if( -1 == write(power_level_fd, buf, 64) ){
+		ALOGD("write failed");
+		close(power_level_fd);
+		return 0;
+	}
+	close(power_level_fd);
+
+done:
+	return -1;
+}
+
+
+static jint setProjectorLight(JNIEnv *env, jclass clz, jint level)
+{
+	ALOGI("=============pico open it  +++++++++");
+	int fd,num;
+	u32 backlight;
+	fd=open(PICO_PATH,O_RDWR);
+    if(fd == -1){
+		ALOGE("Can't open %s, errno = %d", PICO_PATH, errno);
+        return -1;
+    }
+	num=ioctl(fd,PICO_IOCTL_SYS_SET_POWER, &level);
+	save_pico_power_level_to_mtd(level);
+	close(fd);
+    return num;
+}
+
+static jint fetchProjectorLight(JNIEnv *env, jclass clz)
+{
+	ALOGI("=============pico open it  +++++++++");
+		int ret;
+		int current_fd;
+		char buf[64]={0};
+		char *ptr = NULL;
+		char pico_current[5]={0};
+		memset(pico_current,0x00,5);
+		current_fd = open(MTD_PATH, O_RDONLY);
+		if( current_fd < 0 ){
+			ALOGE("Can't open %s, errno = %d", MTD_PATH, errno);
+			return -1;
+		}
+		memset(buf, 0, 64);
+		if( 0 == read(current_fd, buf, 64) ){
+			ALOGE("Read from %s failed!, errno = %d", MTD_PATH, errno);
+			close(current_fd);
+			goto done;
+		}
+		close(current_fd);
+		ALOGD("zhangyi jni pico_current=%s",buf);
+		if(str_startsWith(buf, "start:")){
+				ptr = strstr(buf,"start:flip=");
+				ptr = ptr + 24;
+				strncpy(pico_current,ptr,4);
+				ALOGD("pico_current=%s",pico_current);
+				if(!strncmp(pico_current,"0x01",4))
+					return 1;
+				else return 2;
+		}else{
+			return 2;
+		}
+
+	done:
+		return -1;
+}
+
+
+static jint SetProjectorMode(JNIEnv *env, jclass clz, jint mode)
+{
+	int fd, num, io_mode;
+	char read_buff[8];
+
+	fd=open(PICO_PATH, O_RDWR);
+    if(fd == -1){
+		ALOGE("Can't open %s, errno = %d", PICO_PATH, errno);
+		return -1;
+    }
+	num=ioctl(fd, PICO_IOCTL_SYS_SET_MODE, &mode);
+	save_pico_mode_to_mtd(mode);
+
+	close(fd);
+
+	return num;
+}
+
+static jint fetchProjectorMode(JNIEnv *env, jclass clz)
+{
+	int ret;
+	int mode_fd;
+	char buf[64]={0};
+	char *ptr = NULL;
+	char pico_flip[5]={0};
+	memset(pico_flip,0x00,5);
+	mode_fd = open(MTD_PATH, O_RDONLY);
+	if( mode_fd < 0 ){
+		LOG("Can't open %s, errno = %d", MTD_PATH, errno);
+		return -1;
+	}
+	memset(buf, 0, 64);
+	if( 0 == read(mode_fd, buf, 64) ){
+		 perror("read failed");
+		 close(mode_fd);
+		 goto done;
+	 }
+	close(mode_fd);
+	ALOGD("zhangyi jni mode=%s",buf);
+	if(str_startsWith(buf, "start:")){
+			ptr = strstr(buf,"start:flip=");
+			ptr = ptr + 11;
+			strncpy(pico_flip,ptr,4);
+			ALOGD("pico_flip=%s",pico_flip);
+			if(!strncmp(pico_flip,"0x10",4))
+				return 2;
+			else if(!strncmp(pico_flip,"0x20",4))
+				return 3;
+			else if(!strncmp(pico_flip,"0x30",4))
+				return 4;
+			else return 1;
+	}else{
+		return 1;
+	}
+
+done:
+	return -1;
+}
+
+
+
 static int bt1886eotf(int* segYn, double maxLumi, double minLumi)
 {
 	
@@ -184,6 +478,11 @@ static JNINativeMethod methods[] = {
   {"getEetf", "(FF)[I", (void*)getEetf },
   {"getOetf", "(FF)[I", (void*)getOetf },
   {"getMaxMin", "(FF)[I", (void*)getMaxMin },
+
+  {"setProjectorLight", "(I)I", (void*)setProjectorLight },
+  {"SetProjectorMode", "(I)I", (void*)SetProjectorMode },
+  {"fetchProjectorMode", "()I", (void*)fetchProjectorMode },
+  {"fetchProjectorLight", "()I", (void*)fetchProjectorLight },
 };
 
 /*

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (C) 2016 The Android Open Source Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License
+-->
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:title="@string/about_system_update" >
+
+    <Preference
+            android:icon="@drawable/ic_bluetooth"
+            android:key="bluetooth"
+            android:title="@string/bluetooth"
+            android:fragment="com.android.tv.settings.bluetooth.BluetoothFragment" />
+    <Preference
+            android:icon="@drawable/ic_language"
+            android:key="language"
+            android:title="@string/system_language"
+            android:fragment="com.android.tv.settings.system.LanguageFragment" />
+    <Preference
+        android:icon="@drawable/ic_keyboard"
+        android:key="keyboard"
+        android:title="@string/system_keyboard"
+        android:fragment="com.android.tv.settings.system.KeyboardFragment" />
+    <Preference
+            android:icon="@drawable/icon_display"
+            android:key="displaies"
+            android:title="@string/display_category_title"
+            android:fragment="com.android.tv.settings.display.DisplayFragment" />
+    <Preference
+        android:icon="@drawable/ic_adb"
+        android:key="apps"
+        android:title="@string/device_apps"
+        android:fragment="com.android.tv.settings.device.apps.AppsFragment" />
+    <Preference
+        android:icon="@drawable/ic_settings_system_daydream"
+        android:key="daydream"
+        android:title="@string/device_daydream"
+        android:fragment="com.android.tv.settings.device.display.daydream.DaydreamFragment" />
+
+</PreferenceScreen>

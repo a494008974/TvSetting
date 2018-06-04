@@ -27,7 +27,7 @@ public class MainConstance {
 	
 	public static Class[] clazz = {
 		NetworkActivity.class,SoundActivity.class,DateTimeActivity.class,UserBackupActivity.class,
-		MainSettings.class,SystemUpdateActivity.class,ProjectorActivity.class,AboutActivity.class
+		SystemActivity.class,SystemUpdateActivity.class,ProjectorActivity.class,AboutActivity.class
 		};
 	
 	

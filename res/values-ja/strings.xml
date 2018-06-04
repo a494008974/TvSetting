@@ -20,6 +20,8 @@
     <string name="projector_settings">投影設定</string>
     <string name="light_settings">明るさの設定</string>
     <string name="flip_settings">プロジェクション設定</string>
+    <string name="system_net_update">システムネットワークアップデート</string>
+    <string name="system_local_update">システムロケールアップデート</string>
     
     <string name="settings_app_name" msgid="4243616485579754401">"設定"</string>
     <string name="launcher_settings_app_name" msgid="5782771766725939392">"設定"</string>

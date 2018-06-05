@@ -6,6 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.LinearLayout.LayoutParams;
+
 import com.android.tv.settings.R;
 
 public abstract class BaseLeanbackPreferenceFragment extends LeanbackPreferenceFragment{
@@ -24,10 +27,18 @@ public abstract class BaseLeanbackPreferenceFragment extends LeanbackPreferenceF
         viewGroup.setBackgroundResource(R.drawable.setting_bg);
         View view0 = viewGroup.getChildAt(0);
         if(view0 != null){
-        	view0.setBackgroundColor(Color.parseColor("#22222222"));
+        	view0.setBackgroundColor(Color.parseColor("#882f3b7c"));
         }
         View view1 = viewGroup.getChildAt(1);
         if(view1 != null){
+        	if(view1 instanceof LinearLayout){
+        		LinearLayout layout = (LinearLayout)view1;
+        		LinearLayout.LayoutParams ll = (LayoutParams) layout.getLayoutParams();
+        		ll.setMargins(100, 20, 100, 20);
+        		view1.setLayoutParams(ll);
+        	}
+        	
+        	
         	view1.setBackgroundColor(0);
         }
         

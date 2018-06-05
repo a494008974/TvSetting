@@ -34,7 +34,7 @@ public abstract class BaseLeanbackPreferenceFragment extends LeanbackPreferenceF
         	if(view1 instanceof LinearLayout){
         		LinearLayout layout = (LinearLayout)view1;
         		LinearLayout.LayoutParams ll = (LayoutParams) layout.getLayoutParams();
-        		ll.setMargins(100, 20, 100, 20);
+        		ll.setMargins(120, 20, 120, 20);
         		view1.setLayoutParams(ll);
         	}
         	

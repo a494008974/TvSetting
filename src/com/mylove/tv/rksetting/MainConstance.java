@@ -10,6 +10,9 @@ import com.android.tv.settings.device.sound.SoundActivity;
 import com.android.tv.settings.system.DateTimeActivity;
 import com.android.tv.settings.system.InputsActivity;
 import com.android.tv.settings.system.LanguageActivity;
+import com.mylove.tv.rksetting.projector.ProjectorActivity;
+import com.mylove.tv.rksetting.system.SystemActivity;
+import com.mylove.tv.rksetting.update.SystemUpdateActivity;
 
 
 

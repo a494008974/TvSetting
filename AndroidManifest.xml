@@ -55,7 +55,7 @@
         </activity>
         
         <activity
-            android:name="com.mylove.tv.rksetting.ProjectorActivity"
+            android:name="com.mylove.tv.rksetting.projector.ProjectorActivity"
             android:theme="@style/Theme.Settings.Transparent"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:excludeFromRecents="true"
@@ -63,7 +63,7 @@
         </activity>
         
         <activity
-            android:name="com.mylove.tv.rksetting.SystemUpdateActivity"
+            android:name="com.mylove.tv.rksetting.update.SystemUpdateActivity"
             android:theme="@style/Theme.Settings.Transparent"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:excludeFromRecents="true"
@@ -71,7 +71,7 @@
         </activity>
         
         <activity
-            android:name="com.mylove.tv.rksetting.SystemActivity"
+            android:name="com.mylove.tv.rksetting.system.SystemActivity"
             android:theme="@style/Theme.Settings.Transparent"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:excludeFromRecents="true"

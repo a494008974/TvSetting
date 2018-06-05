@@ -53,12 +53,13 @@ import com.android.tv.settings.dialog.PinDialogFragment;
 import com.android.tv.settings.users.AppRestrictionsFragment;
 import com.android.tv.settings.users.RestrictedProfilePinDialogFragment;
 import com.android.tv.settings.users.UserSwitchListenerService;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.List;
 
-public class SecurityFragment extends LeanbackPreferenceFragment
+public class SecurityFragment extends BaseLeanbackPreferenceFragment
         implements RestrictedProfilePinDialogFragment.Callback,
         UnknownSourcesConfirmationFragment.Callback {
 

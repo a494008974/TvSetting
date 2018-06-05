@@ -24,9 +24,10 @@ import android.support.v7.preference.PreferenceScreen;
 
 import com.android.tv.settings.PreferenceUtils;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 @Keep
-public class LegalFragment extends LeanbackPreferenceFragment {
+public class LegalFragment extends BaseLeanbackPreferenceFragment {
 
     private static final String KEY_TERMS = "terms";
     private static final String KEY_LICENSE = "license";

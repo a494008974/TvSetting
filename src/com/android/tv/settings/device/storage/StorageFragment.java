@@ -31,11 +31,12 @@ import android.util.Log;
 import com.android.settingslib.deviceinfo.StorageMeasurement;
 import com.android.tv.settings.R;
 import com.android.tv.settings.device.apps.AppsFragment;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.HashMap;
 import java.util.List;
 
-public class StorageFragment extends LeanbackPreferenceFragment {
+public class StorageFragment extends BaseLeanbackPreferenceFragment {
     private static final String TAG = "StorageFragment";
 
     private static final String KEY_MIGRATE = "migrate";

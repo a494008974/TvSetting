@@ -31,8 +31,9 @@ import android.support.v7.preference.TwoStatePreference;
 import android.text.TextUtils;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
-public class SoundFragment extends LeanbackPreferenceFragment implements
+public class SoundFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_SOUND_EFFECTS = "sound_effects";

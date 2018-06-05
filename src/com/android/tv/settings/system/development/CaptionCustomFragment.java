@@ -27,9 +27,10 @@ import android.support.v7.preference.TwoStatePreference;
 import android.text.TextUtils;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 @Keep
-public class CaptionCustomFragment extends LeanbackPreferenceFragment implements
+public class CaptionCustomFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_FONT_FAMILY = "font_family";

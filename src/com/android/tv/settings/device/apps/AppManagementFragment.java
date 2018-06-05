@@ -36,10 +36,11 @@ import android.widget.Toast;
 
 import com.android.settingslib.applications.ApplicationsState;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 
-public class AppManagementFragment extends LeanbackPreferenceFragment {
+public class AppManagementFragment extends BaseLeanbackPreferenceFragment {
     private static final String TAG = "AppManagementFragment";
 
     private static final String ARG_PACKAGE_NAME = "packageName";

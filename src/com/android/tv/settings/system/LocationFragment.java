@@ -36,13 +36,14 @@ import android.util.Log;
 import com.android.settingslib.location.RecentLocationApps;
 import com.android.tv.settings.R;
 import com.android.tv.settings.device.apps.AppManagementFragment;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-public class LocationFragment extends LeanbackPreferenceFragment implements
+public class LocationFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "LocationFragment";

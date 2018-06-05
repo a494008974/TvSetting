@@ -41,12 +41,13 @@ import android.util.Log;
 import com.android.settingslib.accounts.AuthenticatorHelper;
 import com.android.tv.settings.R;
 import com.google.android.collect.Lists;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class AccountSyncFragment extends LeanbackPreferenceFragment implements
+public class AccountSyncFragment extends BaseLeanbackPreferenceFragment implements
         AuthenticatorHelper.OnAccountsUpdateListener {
     private static final String TAG = "AccountSyncFragment";
 

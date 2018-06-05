@@ -35,12 +35,13 @@ import android.util.Log;
 
 import com.android.settingslib.applications.ApplicationsState;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 
-public class AppsFragment extends LeanbackPreferenceFragment {
+public class AppsFragment extends BaseLeanbackPreferenceFragment {
 
     private static final String TAG = "AppsFragment";
 

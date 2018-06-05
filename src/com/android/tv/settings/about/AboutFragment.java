@@ -46,8 +46,9 @@ import com.android.tv.settings.LongClickPreference;
 import com.android.tv.settings.PreferenceUtils;
 import com.android.tv.settings.R;
 import com.android.tv.settings.name.DeviceManager;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
-public class AboutFragment extends LeanbackPreferenceFragment implements
+public class AboutFragment extends BaseLeanbackPreferenceFragment implements
         LongClickPreference.OnLongClickListener {
     private static final String TAG = "AboutFragment";
 

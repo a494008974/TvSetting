@@ -29,11 +29,12 @@ import android.text.TextUtils;
 
 import com.android.tv.settings.R;
 import com.android.tv.settings.RadioPreference;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.Map;
 import java.util.Set;
 
-public class InputOptionsFragment extends LeanbackPreferenceFragment implements
+public class InputOptionsFragment extends BaseLeanbackPreferenceFragment implements
         InputCustomNameFragment.Callback {
 
     private static final String KEY_SHOW_INPUT = "show_input";

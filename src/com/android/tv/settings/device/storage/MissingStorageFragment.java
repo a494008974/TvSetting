@@ -26,8 +26,9 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
-public class MissingStorageFragment extends LeanbackPreferenceFragment {
+public class MissingStorageFragment extends BaseLeanbackPreferenceFragment {
 
     private static final String TAG = "MissingStorageFragment";
 

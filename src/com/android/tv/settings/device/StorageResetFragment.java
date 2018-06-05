@@ -34,6 +34,7 @@ import com.android.tv.settings.device.storage.MissingStorageFragment;
 import com.android.tv.settings.device.storage.NewStorageActivity;
 import com.android.tv.settings.device.storage.StorageFragment;
 import com.android.tv.settings.device.storage.StoragePreference;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-public class StorageResetFragment extends LeanbackPreferenceFragment {
+public class StorageResetFragment extends BaseLeanbackPreferenceFragment {
 
     private static final String TAG = "StorageResetFragment";
 

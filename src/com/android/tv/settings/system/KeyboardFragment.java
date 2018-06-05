@@ -34,12 +34,13 @@ import android.view.inputmethod.InputMethodInfo;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class KeyboardFragment extends LeanbackPreferenceFragment {
+public class KeyboardFragment extends BaseLeanbackPreferenceFragment {
     private static final String TAG = "KeyboardFragment";
     private static final String INPUT_METHOD_SEPARATOR = ":";
     private static final String KEY_CURRENT_KEYBOARD = "currentKeyboard";

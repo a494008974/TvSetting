@@ -35,6 +35,7 @@ import android.util.Log;
 
 import com.android.settingslib.dream.DreamBackend;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.List;
 import java.util.Map;
@@ -43,7 +44,7 @@ import java.util.Objects;
 import static android.provider.Settings.Secure.SLEEP_TIMEOUT;
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
-public class DaydreamFragment extends LeanbackPreferenceFragment
+public class DaydreamFragment extends BaseLeanbackPreferenceFragment
         implements Preference.OnPreferenceChangeListener {
 
     private static final String TAG = "DaydreamFragment";

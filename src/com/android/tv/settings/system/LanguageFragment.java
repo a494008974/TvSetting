@@ -31,12 +31,13 @@ import android.util.Log;
 import com.android.internal.app.LocalePicker;
 import com.android.tv.settings.R;
 import com.android.tv.settings.RadioPreference;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class LanguageFragment extends LeanbackPreferenceFragment {
+public class LanguageFragment extends BaseLeanbackPreferenceFragment {
     private static final String TAG = "LanguageFragment";
 
     private static final String LANGUAGE_RADIO_GROUP = "language";

@@ -33,11 +33,12 @@ import android.text.format.DateFormat;
 
 import com.android.settingslib.datetime.ZoneGetter;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateTimeFragment extends LeanbackPreferenceFragment implements
+public class DateTimeFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_AUTO_DATE_TIME = "auto_date_time";

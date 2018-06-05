@@ -18,13 +18,15 @@ import com.android.settingslib.bluetooth.BluetoothDeviceFilter;
 import com.android.settingslib.bluetooth.CachedBluetoothDevice;
 import com.android.settingslib.bluetooth.LocalBluetoothAdapter;
 import com.android.settingslib.bluetooth.LocalBluetoothManager;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+
 import java.util.Collection;
 import java.util.WeakHashMap;
 /**
  * @author GaoFei
  *
  */
-public abstract class BaseDevicePickerFragment extends LeanbackPreferenceFragment implements BluetoothCallback{
+public abstract class BaseDevicePickerFragment extends BaseLeanbackPreferenceFragment implements BluetoothCallback{
 
     private static final String TAG = "BaseDevicePickerFragment";
 

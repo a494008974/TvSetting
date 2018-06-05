@@ -36,7 +36,8 @@ import android.os.DisplayOutputManager;
 import android.os.SystemProperties;
 import com.android.tv.settings.R;
 import com.android.tv.settings.data.ConstData;
-public class DisplayFragment extends LeanbackPreferenceFragment{
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+public class DisplayFragment extends BaseLeanbackPreferenceFragment{
 	private static final String TAG = "DisplayFragment";
 	public static final String KEY_MAIN_DISPLAY = "main_display";
 	public static final String KEY_SECOND_DISPLAY = "second_display";
@@ -47,27 +48,27 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 	private static boolean mIsUseDisplayd;
 
 	/**
-	 * rk_fb输出相关
+	 * rk_fb杈撳嚭鐩稿叧
 	 */
 	private DisplayOutputManager mDisplayOutputManager;
 	/**
-	 * 原生标准显示管理接口,用于DRM显示相关
+	 * 鍘熺敓鏍囧噯鏄剧ず绠＄悊鎺ュ彛,鐢ㄤ簬DRM鏄剧ず鐩稿叧
 	 */
 	private DisplayManager mDisplayManager;
 	/**
-	 * 插拔显示设备监听
+	 * 鎻掓嫈鏄剧ず璁惧鐩戝惉
 	 */
 	private DisplayListener mDisplayListener;
 	/**
-	 * 主显示
+	 * 涓绘樉绀�
 	 */
 	private Preference mMainDisplayPreference;
 	/**
-	 * 次显示
+	 * 娆℃樉绀�
 	 */
 	private Preference mSecondDisPreference;
 	/**
-	 * HDMI热插拔接收器
+	 * HDMI鐑彃鎷旀帴鏀跺櫒
 	 */
 	private HDMIReceiver mHdmiReceiver;
 	private PreferenceCategory mDisplayDeviceCategory;
@@ -127,21 +128,21 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
     }
 
     /**
-     * 注册显示监听
+     * 娉ㄥ唽鏄剧ず鐩戝惉
      */
     private void registerDisplayListener(){
     	mDisplayManager.registerDisplayListener(mDisplayListener, null);
     }
 
     /**
-     * 取消显示监听
+     * 鍙栨秷鏄剧ず鐩戝惉
      */
     private void unRegiserDisplayListener(){
     	mDisplayManager.unregisterDisplayListener(mDisplayListener);
     }
 
     /**
-     * 注册HDMI接收器
+     * 娉ㄥ唽HDMI鎺ユ敹鍣�
      */
     private void registerHDMIReceiver(){
         IntentFilter filter = new IntentFilter(HDMI_PLUG_ACTION);
@@ -150,14 +151,14 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 
 
     /**
-     * 取消注册HDMI接收器
+     * 鍙栨秷娉ㄥ唽HDMI鎺ユ敹鍣�
      */
     private void unRegisterHDMIReceiver(){
         getActivity().unregisterReceiver(mHdmiReceiver);
     }
 
     /**
-     * 重新构造页面
+     * 閲嶆柊鏋勯�犻〉闈�
      */
     private void rebuildView(){
     	mDisplayDeviceCategory.removeAll();
@@ -180,7 +181,7 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
     }
 
     /**
-     * 获取所有外接显示设备信息,此方法已兼容rk_fb与DRM
+     * 鑾峰彇鎵�鏈夊鎺ユ樉绀鸿澶囦俊鎭�,姝ゆ柟娉曞凡鍏煎rk_fb涓嶥RM
      * @param <mDisplayOutputManager>
      * @return
      */
@@ -198,13 +199,13 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 		if(!mIsUseDisplayd){
 			displayInfos.addAll(DrmDisplaySetting.getDisplayInfoList());
     	}else{
-    		//使用rk_fb方式获取显示列表
+    		//浣跨敤rk_fb鏂瑰紡鑾峰彇鏄剧ず鍒楄〃
     		int[] mainTypes = mDisplayOutputManager.getIfaceList(mDisplayOutputManager.MAIN_DISPLAY);
     		int[] externalTypes = mDisplayOutputManager.getIfaceList(mDisplayOutputManager.AUX_DISPLAY);
-    		//RK系列芯片，目前最多只能支持2个屏幕
+    		//RK绯诲垪鑺墖锛岀洰鍓嶆渶澶氬彧鑳芥敮鎸�2涓睆骞�
     		if(mainTypes != null && mainTypes.length > 0){
     			int currMainType = mDisplayOutputManager.getCurrentInterface(mDisplayOutputManager.MAIN_DISPLAY);
-    			//主屏只能有一个
+    			//涓诲睆鍙兘鏈変竴涓�
     			DisplayInfo displayInfo = new DisplayInfo();
 				displayInfo.setDisplayId(0);
 				displayInfo.setDescription((String)invokeMethod(mDisplayOutputManager, "typetoface", new Class[]{int.class}, new Integer[]{currMainType}));
@@ -214,12 +215,12 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
     		}
     		if(externalTypes != null && externalTypes.length > 0){
     			int currExternalType =  mDisplayOutputManager.getCurrentInterface(mDisplayOutputManager.AUX_DISPLAY);
-    			//副屏只能有一个
+    			//鍓睆鍙兘鏈変竴涓�
     			DisplayInfo displayInfo = new DisplayInfo();
     			displayInfo.setType(currExternalType);
     			displayInfo.setModes(mDisplayOutputManager.getModeList(1,currExternalType));
     			displayInfo.setDescription((String)invokeMethod(mDisplayOutputManager, "typetoface", new Class[]{int.class}, new Integer[]{currExternalType}));
-    			//副屏的id需要搜索标准接口
+    			//鍓睆鐨刬d闇�瑕佹悳绱㈡爣鍑嗘帴鍙�
     			for(Display display : displays){
     				if(display.getDisplayId() != 0){
     					displayInfo.setDisplayId(display.getDisplayId());
@@ -234,7 +235,7 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 
 
     /**
-     * 反射调用相关方法
+     * 鍙嶅皠璋冪敤鐩稿叧鏂规硶
      * @param object
      * @param methodName
      * @param parameterTypes
@@ -255,7 +256,7 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 
 
     /**
-     * 转换显示接口
+     * 杞崲鏄剧ず鎺ュ彛
      */
     private void changeDisplayInterface(boolean isHDMIConnect){
         mDisplayOutputManager = null;
@@ -271,7 +272,7 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 
 
     /**
-     * 显示设备插拔监听器
+     * 鏄剧ず璁惧鎻掓嫈鐩戝惉鍣�
      * @author GaoFei
      *
      */
@@ -299,7 +300,7 @@ public class DisplayFragment extends LeanbackPreferenceFragment{
 
 
     /**
-     * HDMI 热插拔事件
+     * HDMI 鐑彃鎷斾簨浠�
      * @author GaoFei
      *
      */

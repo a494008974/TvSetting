@@ -34,6 +34,7 @@ import android.util.Log;
 import android.widget.Checkable;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,7 +44,7 @@ import java.util.MissingResourceException;
 import java.util.Objects;
 import java.util.Set;
 
-public class TextToSpeechFragment extends LeanbackPreferenceFragment  implements
+public class TextToSpeechFragment extends BaseLeanbackPreferenceFragment  implements
         Preference.OnPreferenceChangeListener, Preference.OnPreferenceClickListener,
         TtsEnginePreference.RadioButtonGroupState {
     private static final String TAG = "TextToSpeechSettings";

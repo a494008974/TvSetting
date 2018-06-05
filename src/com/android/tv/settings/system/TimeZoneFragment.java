@@ -32,6 +32,7 @@ import android.text.TextUtils;
 
 import com.android.settingslib.datetime.ZoneGetter;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +42,7 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @Keep
-public class TimeZoneFragment extends LeanbackPreferenceFragment {
+public class TimeZoneFragment extends BaseLeanbackPreferenceFragment {
 
     private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
         @Override

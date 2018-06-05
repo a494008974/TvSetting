@@ -34,13 +34,14 @@ import android.util.Log;
 import android.util.Pair;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
 
-public class TtsEngineSettingsFragment extends LeanbackPreferenceFragment implements
+public class TtsEngineSettingsFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
     private static final String TAG = "TtsEngineSettings";
     private static final boolean DBG = false;

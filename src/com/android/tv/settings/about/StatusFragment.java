@@ -40,12 +40,13 @@ import android.text.format.DateUtils;
 
 import com.android.internal.util.ArrayUtils;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.lang.ref.WeakReference;
 import java.net.InetAddress;
 import java.util.Iterator;
 
-public class StatusFragment extends LeanbackPreferenceFragment {
+public class StatusFragment extends BaseLeanbackPreferenceFragment {
 
     private static final String KEY_BATTERY_STATUS = "battery_status";
     private static final String KEY_BATTERY_LEVEL = "battery_level";

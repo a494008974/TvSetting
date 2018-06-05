@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v17.preference.LeanbackPreferenceFragment;
 import com.android.tv.settings.R;
 
-public class SystemUpdateFragment extends LeanbackPreferenceFragment {
+public class SystemUpdateFragment extends BaseLeanbackPreferenceFragment {
 	public static SystemUpdateFragment newInstance() {
         return new SystemUpdateFragment();
     }

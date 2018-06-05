@@ -39,6 +39,7 @@ import com.android.internal.logging.MetricsProto.MetricsEvent;
 
 
 import com.android.settingslib.TetherUtil;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 
 import java.lang.ref.WeakReference;
@@ -49,7 +50,7 @@ import static android.net.ConnectivityManager.TETHERING_BLUETOOTH;
 import static android.net.ConnectivityManager.TETHERING_USB;
 import static android.net.ConnectivityManager.TETHERING_WIFI;
 
-public class HotPotFragment extends LeanbackPreferenceFragment 
+public class HotPotFragment extends BaseLeanbackPreferenceFragment 
 	implements Preference.OnPreferenceChangeListener,
         DataSaverBackend.Listener,DialogInterface.OnClickListener,DialogCreatable{
 

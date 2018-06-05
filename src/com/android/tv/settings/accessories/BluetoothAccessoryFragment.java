@@ -40,13 +40,14 @@ import android.support.v7.preference.PreferenceScreen;
 import android.util.Log;
 
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
-public class BluetoothAccessoryFragment extends LeanbackPreferenceFragment {
+public class BluetoothAccessoryFragment extends BaseLeanbackPreferenceFragment {
 
     private static final boolean DEBUG = false;
     private static final String TAG = "BluetoothAccessoryFrag";

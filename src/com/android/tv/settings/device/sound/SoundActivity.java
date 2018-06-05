@@ -28,7 +28,7 @@ public class SoundActivity extends TvSettingsActivity {
 
     @Override
     protected Fragment createSettingsFragment() {
-        return SoundFragment.newInstance();
+        return SettingsFragment.newInstance();
     }
 
     public static class SettingsFragment extends BaseSettingsFragment {

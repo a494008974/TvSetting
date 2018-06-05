@@ -25,7 +25,7 @@ public class NetworkActivity extends TvSettingsActivity {
 
     @Override
     protected Fragment createSettingsFragment() {
-        return NetworkFragment.newInstance();
+        return SettingsFragment.newInstance();
     }
 
     public static class SettingsFragment extends BaseSettingsFragment {

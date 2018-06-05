@@ -31,10 +31,11 @@ import android.text.TextUtils;
 
 import com.android.settingslib.wifi.AccessPoint;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.List;
 
-public class WifiDetailsFragment extends LeanbackPreferenceFragment
+public class WifiDetailsFragment extends BaseLeanbackPreferenceFragment
         implements ConnectivityListener.Listener, ConnectivityListener.WifiNetworkListener {
 
     private static final String ARG_ACCESS_POINT_STATE = "apBundle";

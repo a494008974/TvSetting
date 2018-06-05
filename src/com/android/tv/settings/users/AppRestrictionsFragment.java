@@ -57,6 +57,7 @@ import android.widget.Switch;
 
 import com.android.settingslib.users.AppRestrictionsHelper;
 import com.android.tv.settings.R;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -66,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-public class AppRestrictionsFragment extends LeanbackPreferenceFragment implements
+public class AppRestrictionsFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceChangeListener,
         AppRestrictionsHelper.OnDisableUiForPackageListener {
 

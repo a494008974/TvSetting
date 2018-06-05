@@ -92,6 +92,8 @@ import com.android.internal.net.VpnProfile;
 import com.android.internal.util.ArrayUtils;
 import com.android.settingslib.RestrictedLockUtils;
 import com.google.android.collect.Lists;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import static android.app.AppOpsManager.OP_ACTIVATE_VPN;
@@ -107,7 +109,7 @@ import static android.os.UserManager.DISALLOW_CONFIG_BLUETOOTH;
 import android.bluetooth.BluetoothDevice;
 
 @Keep
-public class BluetoothFragment extends LeanbackPreferenceFragment implements Preference.OnPreferenceClickListener, BluetoothCallback{
+public class BluetoothFragment extends BaseLeanbackPreferenceFragment implements Preference.OnPreferenceClickListener, BluetoothCallback{
     private static final String TAG = "BluetoothFragment";
     private static final String BTOPP_ACTION_OPEN_RECEIVED_FILES =
             "android.btopp.intent.action.OPEN_RECEIVED_FILES";

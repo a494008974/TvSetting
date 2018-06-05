@@ -83,12 +83,14 @@ import com.android.internal.net.VpnProfile;
 import com.android.internal.util.ArrayUtils;
 import com.android.settingslib.RestrictedLockUtils;
 import com.google.android.collect.Lists;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import static android.app.AppOpsManager.OP_ACTIVATE_VPN;
 import android.os.SystemProperties;
 
-public class NetworkFragment extends LeanbackPreferenceFragment implements
+public class NetworkFragment extends BaseLeanbackPreferenceFragment implements
         ConnectivityListener.Listener, ConnectivityListener.WifiNetworkListener,
         AccessPoint.AccessPointListener, Preference.OnPreferenceClickListener, Handler.Callback{
     private static final String TAG = "NetworkFragment";

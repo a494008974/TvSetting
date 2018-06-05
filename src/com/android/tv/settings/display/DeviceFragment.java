@@ -35,11 +35,13 @@ import android.os.SystemProperties;
 import android.support.annotation.Keep;
 import com.android.tv.settings.R;
 import com.android.tv.settings.data.ConstData;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 @Keep
-public class DeviceFragment extends LeanbackPreferenceFragment implements Preference.OnPreferenceChangeListener,
+public class DeviceFragment extends BaseLeanbackPreferenceFragment implements Preference.OnPreferenceChangeListener,
 Preference.OnPreferenceClickListener{
     protected static final String TAG = "DeviceFragment";
     public static final String KEY_RESOLUTION = "resolution";
@@ -47,36 +49,36 @@ Preference.OnPreferenceClickListener{
     public static final String KEY_ADVANCED_SETTINGS = "advanced_settings";
     protected PreferenceScreen mPreferenceScreen;
     /**
-     * 分辨率设置
+     * 鍒嗚鲸鐜囪缃�
      */
     protected ListPreference mResolutionPreference;
     /**
-     * 缩放设置
+     * 缂╂斁璁剧疆
      */
     protected Preference mZoomPreference;
     /**
-     * 高级设置
+     * 楂樼骇璁剧疆
      */
     protected Preference mAdvancedSettingsPreference;
     /**
-     * 当前显示设备对应的信息
+     * 褰撳墠鏄剧ず璁惧瀵瑰簲鐨勪俊鎭�
      */
     protected DisplayInfo mDisplayInfo;
     /**
-     * 标题
+     * 鏍囬
      */
     protected TextView mTextTitle;
     /**
-     * 标识平台
+     * 鏍囪瘑骞冲彴
      */
     protected String mStrPlatform;
     protected boolean mIsUseDisplayd;
     /**
-     * 显示管理
+     * 鏄剧ず绠＄悊
      */
     protected DisplayManager mDisplayManager;
     /**
-    * 原来的分辨率
+    * 鍘熸潵鐨勫垎杈ㄧ巼
     */
     private String mOldResolution;
     @Override
@@ -145,7 +147,7 @@ Preference.OnPreferenceClickListener{
     }
 
     /**
-     * 还原分辨率值
+     * 杩樺師鍒嗚鲸鐜囧��
      */
     public void updateResolutionValue(){
     	if(mDisplayInfo == null)
@@ -241,7 +243,7 @@ Preference.OnPreferenceClickListener{
                     if(isok && displayOutputManager != null){
                         displayOutputManager.saveConfig();
                     }else if(!isok && displayOutputManager != null && mOldResolution != null){
-                        //还原原来的分辨率
+                        //杩樺師鍘熸潵鐨勫垎杈ㄧ巼
                         displayOutputManager.setMode(mDisplayInfo.getDisplayId(), mDisplayInfo.getType(), mOldResolution);
                     }
                     updateResolutionValue();

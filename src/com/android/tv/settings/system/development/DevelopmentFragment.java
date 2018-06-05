@@ -71,11 +71,12 @@ import java.util.HashSet;
 import java.util.List;
 
 import com.android.tv.settings.dialog.UsbModeSettings;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 /*
  * Displays preferences for application developers.
  */
-public class DevelopmentFragment extends LeanbackPreferenceFragment
+public class DevelopmentFragment extends BaseLeanbackPreferenceFragment
         implements Preference.OnPreferenceChangeListener,
         EnableDevelopmentDialog.Callback, OemUnlockDialog.Callback, AdbDialog.Callback {
     private static final String TAG = "DevelopmentSettings";

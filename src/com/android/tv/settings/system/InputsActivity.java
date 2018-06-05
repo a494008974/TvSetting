@@ -28,8 +28,7 @@ public class InputsActivity extends TvSettingsActivity {
 
     @Override
     protected Fragment createSettingsFragment() {
-//        return SettingsFragment.newInstance();
-    	return InputsFragment.newInstance();
+        return SettingsFragment.newInstance();
     }
 
     public static class SettingsFragment extends BaseSettingsFragment {

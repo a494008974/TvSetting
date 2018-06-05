@@ -11,7 +11,7 @@ import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
 import android.text.TextUtils;
 
-public class ProjectorFragment extends LeanbackPreferenceFragment  implements Preference.OnPreferenceChangeListener {
+public class ProjectorFragment extends BaseLeanbackPreferenceFragment  implements Preference.OnPreferenceChangeListener {
 	
 	private static final String KEY_LIGHT_SETTINGS = "light_settings";
     private static final String KEY_FLIP_SETTINGS = "flip_settings";

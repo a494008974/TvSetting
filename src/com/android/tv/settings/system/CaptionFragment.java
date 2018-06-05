@@ -30,10 +30,11 @@ import android.text.TextUtils;
 import com.android.internal.app.LocalePicker;
 import com.android.tv.settings.R;
 import com.android.tv.settings.RadioPreference;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
 
 import java.util.List;
 
-public class CaptionFragment extends LeanbackPreferenceFragment implements
+public class CaptionFragment extends BaseLeanbackPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
 
     private static final String KEY_CAPTIONS_DISPLAY = "captions_display";

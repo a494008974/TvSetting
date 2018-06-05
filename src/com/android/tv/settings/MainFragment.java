@@ -53,10 +53,12 @@ import com.android.tv.settings.connectivity.ConnectivityListener;
 import com.android.tv.settings.device.sound.SoundFragment;
 import com.android.tv.settings.system.SecurityFragment;
 import com.android.tv.settings.displayoutput.MainResolutionsActivity;
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+
 import java.util.ArrayList;
 import java.util.Set;
 
-public class MainFragment extends LeanbackPreferenceFragment {
+public class MainFragment extends BaseLeanbackPreferenceFragment {
     private static final String TAG = "MainFragment";
 
     private static final String KEY_DEVELOPER = "developer";

@@ -28,8 +28,7 @@ public class AboutActivity extends TvSettingsActivity {
 
     @Override
     protected Fragment createSettingsFragment() {
-//        return SettingsFragment.newInstance();
-    	return AboutFragment.newInstance();
+        return SettingsFragment.newInstance();
     }
 
     public static class SettingsFragment extends BaseSettingsFragment {

@@ -25,7 +25,7 @@ public class DateTimeActivity extends TvSettingsActivity {
 
     @Override
     protected Fragment createSettingsFragment() {
-        return DateTimeFragment.newInstance();
+        return SettingsFragment.newInstance();
     }
 
     public static class SettingsFragment extends BaseSettingsFragment {

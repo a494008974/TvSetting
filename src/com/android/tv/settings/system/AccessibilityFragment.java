@@ -40,10 +40,12 @@ import android.view.accessibility.AccessibilityManager;
 import com.android.settingslib.accessibility.AccessibilityUtils;
 import com.android.tv.settings.R;
 
+import com.mylove.tv.rksetting.BaseLeanbackPreferenceFragment;
+
 import java.util.List;
 import java.util.Set;
 
-public class AccessibilityFragment extends LeanbackPreferenceFragment {
+public class AccessibilityFragment extends BaseLeanbackPreferenceFragment {
     private static final String TOGGLE_HIGH_TEXT_CONTRAST_PREFERENCE =
             "toggle_high_text_contrast_preference";
 

@@ -7,20 +7,28 @@ import android.support.v17.preference.LeanbackPreferenceFragment;
 import com.android.tv.settings.R;
 import com.android.tv.settings.util.JniCall;
 
+import android.content.ContentResolver;
 import android.support.v7.preference.ListPreference;
 import android.support.v7.preference.Preference;
+import android.support.v7.preference.TwoStatePreference;
 import android.text.TextUtils;
+import android.util.Log;
 
 public class ProjectorFragment extends BaseLeanbackPreferenceFragment  implements Preference.OnPreferenceChangeListener {
 	
+	private static final String TAG = "ProjectorFragment";
 	private static final String KEY_LIGHT_SETTINGS = "light_settings";
     private static final String KEY_FLIP_SETTINGS = "flip_settings";
+    private static final String KEY_AUTO_KEYSTONE= "auto_keystone";
+	private ContentResolver mContentResolver;
 	
 	public static ProjectorFragment newInstance() {
         return new ProjectorFragment();
     }
 	
 	public void onCreatePreferences(Bundle savedInstanceState, String rootKey){
+		mContentResolver = getActivity().getContentResolver();
+        Log.d(TAG, "mContentResolver=====>" + mContentResolver);
 		setPreferencesFromResource(R.xml.projector, null);
 		
 		
@@ -33,6 +41,10 @@ public class ProjectorFragment extends BaseLeanbackPreferenceFragment  implement
                 (ListPreference) findPreference(KEY_FLIP_SETTINGS);
         flip_settings.setValue(getDefaultFlipSetting());
         flip_settings.setOnPreferenceChangeListener(this);
+
+		final TwoStatePreference autoKeystonePref =
+			(TwoStatePreference) findPreference(KEY_AUTO_KEYSTONE);
+		autoKeystonePref.setChecked(getAutoKeystoneEnabled());
 	}
 	
 	
@@ -43,17 +55,21 @@ public class ProjectorFragment extends BaseLeanbackPreferenceFragment  implement
             int lightValue = Integer.parseInt(selection);
             JniCall.setProjectorLight(lightValue);
             
-            System.out.println("lightValue ================================================= " + lightValue);
+			Log.d(TAG, "lightValue ================================================= " + lightValue);
             return true;
         }else if(TextUtils.equals(preference.getKey(), KEY_FLIP_SETTINGS)){
         	final String selection = (String) newValue;
         	int flipValue = Integer.parseInt(selection);
         	JniCall.SetProjectorMode(flipValue);
         	
-        	System.out.println("flipValue ================================================= " + flipValue);
+			Log.d(TAG, "flipValue ================================================= " + flipValue);
         	return true;
-        }
-        return true;
+        } else if(TextUtils.equals(preference.getKey(), KEY_AUTO_KEYSTONE)) {
+			final TwoStatePreference soundPref = (TwoStatePreference) preference;
+			setAutoKeystoneEnabled (soundPref.isChecked());
+			return true;
+		}
+		return true;
     }
 	
 	private String getDefaultLightSetting() {
@@ -66,5 +82,24 @@ public class ProjectorFragment extends BaseLeanbackPreferenceFragment  implement
 		//jni ªÒ»°flip÷µ
 		int n = JniCall.fetchProjectorMode();
 		return String.valueOf(n);
+	}
+
+	private boolean getAutoKeystoneEnabled() {
+		try {
+		return Settings.System.getInt(mContentResolver, "haptic_feedback_enabled", 1) != 0;
+		} catch (Exception e) {
+			Log.w(TAG, "maxiongbo, getInt:", e);
+		}
+		return true;
+	}
+
+	private void setAutoKeystoneEnabled(boolean enabled) {
+		//Settings.System.canWrite
+		//Settings.System.putInt(mContentResolver, "auto_keystone_enabled", enabled ? 1 : 0);
+		try {
+		Settings.System.putInt(mContentResolver, "haptic_feedback_enabled", enabled ? 1 : 0);
+		} catch (Exception e) {
+			Log.w(TAG, "maxiongbo, putInt", e);
+		}
 	}
 }

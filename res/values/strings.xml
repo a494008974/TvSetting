@@ -19,6 +19,8 @@
     <string name="projector_settings">Projector Settings</string>
     <string name="light_settings">Brightness Settings</string>
     <string name="flip_settings">Projection Settings</string>
+    <string name="auto_setting_keystone">Automaitc Keystone</string>
+    <string name="manual_setting_keystone">Manual Keystone</string>
     <string name="system_net_update">System net update</string>
     <string name="system_local_update">System local update</string>
     

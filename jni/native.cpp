@@ -37,7 +37,6 @@
 
 
 
-#define LOG_TAG "PICO_JNI"
 typedef  unsigned int u32;
 #define PICO_MAGIC 'x'
 #define PICO_MAX_NR 18
@@ -79,6 +78,7 @@ typedef  unsigned int u32;
 #define POWER_7 820
 #define POWER_8 900
 #define POWER_9 980
+#define DEFAULT_CURRENT_LEVEL 6
 
 #define MIN(a,b)                        ((a) <= (b) ? (a):(b))
 #define MAX(a,b)                        ((a) >= (b) ? (a):(b))
@@ -226,11 +226,12 @@ static jint fetchProjectorLight(JNIEnv *env, jclass clz)
 		char buf[64]={0};
 		char *ptr = NULL;
 		char pico_current[5]={0};
+		int level = DEFAULT_CURRENT_LEVEL;
 		memset(pico_current,0x00,5);
 		current_fd = open(MTD_PATH, O_RDONLY);
 		if( current_fd < 0 ){
 			ALOGE("Can't open %s, errno = %d", MTD_PATH, errno);
-			return -1;
+			return level;
 		}
 		memset(buf, 0, 64);
 		if( 0 == read(current_fd, buf, 64) ){
@@ -245,15 +246,15 @@ static jint fetchProjectorLight(JNIEnv *env, jclass clz)
 				ptr = ptr + 24;
 				strncpy(pico_current,ptr,4);
 				ALOGD("pico_current=%s",pico_current);
-				if(!strncmp(pico_current,"0x01",4))
-					return 1;
-				else return 2;
+				sscanf(pico_current, "%x", &level);
+				ALOGD("level=[%d]",level);
+				return level;
 		}else{
-			return 2;
+			return level;
 		}
 
 	done:
-		return -1;
+		return level;
 }
 
 

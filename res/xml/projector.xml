@@ -35,5 +35,17 @@
         android:summary="%s"
         android:title="@string/flip_settings" />
 
+	<SwitchPreference
+		android:key="auto_keystone"
+		android:persistent="false"
+		android:title="@string/auto_setting_keystone" />
+
+	<Preference
+		android:key="manual_keystone"
+		android:title="@string/manual_setting_keystone" >
+        <intent
+            android:targetClass="com.rockchip.keystone.MainActivity"
+            android:targetPackage="com.rockchip.keystone" />
+	</Preference>
 
 </PreferenceScreen>

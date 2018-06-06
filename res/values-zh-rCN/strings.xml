@@ -20,6 +20,8 @@
     <string name="projector_settings">投影设置</string>
     <string name="light_settings">亮度设置</string>
     <string name="flip_settings">投影方式</string>
+    <string name="auto_setting_keystone">自动梯形校正</string>
+    <string name="manual_setting_keystone">手动梯形校正</string>
     <string name="system_net_update">系统网络升级</string>
     <string name="system_local_update">系统本地升级</string>
     

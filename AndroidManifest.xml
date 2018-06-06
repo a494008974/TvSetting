@@ -41,6 +41,7 @@
         android:banner="@drawable/ic_launcher_banner_settings"
         android:supportsRtl="true"
         android:theme="@style/Theme.Settings"
+        android:name="com.mylove.tv.rksetting.update.SettingApp"
         android:usesCleartextTraffic="true"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
@@ -50,7 +51,8 @@
             android:excludeFromRecents="true"
             android:theme="@style/Theme.Settings.Transparent"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:label="@string/settings_app_name" >
+            android:label="@string/settings_app_name"
+            android:exported="true" >
             
         </activity>
         
@@ -83,6 +85,7 @@
             android:excludeFromRecents="true"
             android:exported="true" >
         </activity>
+        <activity android:name="com.mylove.tv.rksetting.update.FileSelector"></activity>
         
         <activity
             android:name="com.mylove.tv.rksetting.system.SystemActivity"

@@ -24,6 +24,9 @@
     <string name="manual_setting_keystone">手动梯形校正</string>
     <string name="system_net_update">系统网络升级</string>
     <string name="system_local_update">系统本地升级</string>
+    <string name="system_local_update_msg">请选择要升级的固件!</string>
+    <string name="system_local_update_select">选择</string>
+    
     
     <string name="settings_app_name" msgid="4243616485579754401">"设置"</string>
     <string name="launcher_settings_app_name" msgid="5782771766725939392">"设置"</string>

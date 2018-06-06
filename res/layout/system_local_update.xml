@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/about_system_update"
+        android:textSize="22.0sp" />
+
+    <TextView
+        android:id="@+id/local_current_version"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dip"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/about_system_update"
+        android:textSize="22.0sp" />
+
+    <TextView
+        android:id="@+id/local_update_info"
+        android:layout_width="500.0dip"
+        android:layout_height="200.0dip"
+        android:layout_marginTop="20.0dip"
+        android:background="@drawable/update_not_display"
+        android:gravity="left"
+        android:paddingBottom="5.0dip"
+        android:paddingLeft="5.0dip"
+        android:paddingTop="5.0dip"
+        android:scrollbarSize="5.0dip"
+        android:scrollbars="vertical"
+        android:text="@string/about_system_update"
+        android:singleLine="false"
+        android:textColor="#cccccccc"
+        android:textSize="18.0sp" />
+
+    <TextView
+        android:id="@+id/local_current_progress"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20.0dip"
+        android:text="@string/about_system_update"
+        android:gravity="center"
+        android:textColor="#ffffffff"
+        android:textSize="22.0sp"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/local_immediate"
+        android:layout_width="157.0dip"
+        android:layout_height="65.0dip"
+        android:layout_marginTop="20.0dip"
+        android:text="@string/about_system_update"
+        android:textColor="#ffffffff"
+        android:textSize="24.0sp" />
+
+</LinearLayout>

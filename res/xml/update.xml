@@ -21,18 +21,14 @@
     <Preference
         android:key="local_update"
         android:title="@string/system_local_update" >
-        <intent
-            android:targetClass="com.mylove.tv.rksetting.update.SystemLocalUpdateActivity"
-            android:targetPackage="com.android.tv.settings" />
+        
     </Preference>
 
     <Preference
         android:key="net_update"
         android:persistent="false"
         android:title="@string/system_net_update" >
-        <intent
-            android:targetClass="com.mylove.tv.rksetting.update.SystemNetUpdateActivity"
-            android:targetPackage="com.android.tv.settings" />
+        
     </Preference>
     
     <Preference

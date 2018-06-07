@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+    
+	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:text="@string/about_system_update" />
+	
+    <ProgressBar
+        android:id="@+id/local_progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_marginTop="30dp"
+        android:max="100"
+        android:progress="30"
+        android:layout_width="500dp"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/local_update"
+        android:layout_width="157.0dip"
+        android:layout_height="65.0dip"
+        android:layout_marginTop="30.0dip"
+        android:text="@string/system_local_update_select"
+       	android:background="@drawable/button_selector"
+        android:textColor="#ffffffff"
+        android:textSize="24.0sp" />
+
+    
+
+</LinearLayout>

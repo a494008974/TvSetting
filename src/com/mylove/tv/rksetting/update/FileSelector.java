@@ -1,5 +1,6 @@
 package com.mylove.tv.rksetting.update;
 
+import com.android.tv.settings.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,7 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.android.tv.settings.R;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FilenameFilter;
@@ -36,7 +37,6 @@ public class FileSelector extends Activity implements OnItemClickListener {
 	private FileAdapter mAdapter = new FileAdapter();
 
 	private ListView mListView;
-	private TextView mFileInfo;
 	
 	private String mRootPath;
 	
@@ -191,12 +191,14 @@ public class FileSelector extends Activity implements OnItemClickListener {
 				//Log.d("yinwb","pathname:"+pathname + " getpath():" + pathname.getPath());
             for(StorageVolume volume:mVolumes){
             	String path = volume.getPath();
-//				Log.d("yinwb","path:"+path);
+				//Log.d("yinwb","path:"+path);Storage
             	if(pathname.getPath().equals(path)){
             		return true;
             	} else if(pathname.getPath().equals("/mnt/usb_storage")){
             		return true;
 				}else if(pathname.getPath().equals("/mnt/usbhost")){
+					return true;
+				}else if(pathname.getPath().equals("/storage")){
 					return true;
 				}
             }

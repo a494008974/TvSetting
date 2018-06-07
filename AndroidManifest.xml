@@ -41,7 +41,6 @@
         android:banner="@drawable/ic_launcher_banner_settings"
         android:supportsRtl="true"
         android:theme="@style/Theme.Settings"
-        android:name="com.mylove.tv.rksetting.update.SettingApp"
         android:usesCleartextTraffic="true"
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
@@ -71,21 +70,13 @@
             android:excludeFromRecents="true"
             android:exported="true" >
         </activity>
+        
         <activity
-            android:name="com.mylove.tv.rksetting.update.SystemNetUpdateActivity"
+            android:name="com.mylove.tv.rksetting.update.SystemRKUpdateActivity"
             android:theme="@style/Theme.Settings.Transparent"
             android:configChanges="keyboard|keyboardHidden|navigation"
-            android:excludeFromRecents="true"
-            android:exported="true" >
+            android:excludeFromRecents="true" >
         </activity>
-        <activity
-            android:name="com.mylove.tv.rksetting.update.SystemLocalUpdateActivity"
-            android:theme="@style/Theme.Settings.Transparent"
-            android:configChanges="keyboard|keyboardHidden|navigation"
-            android:excludeFromRecents="true"
-            android:exported="true" >
-        </activity>
-        <activity android:name="com.mylove.tv.rksetting.update.FileSelector"></activity>
         
         <activity
             android:name="com.mylove.tv.rksetting.system.SystemActivity"
@@ -93,6 +84,31 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:excludeFromRecents="true"
             android:exported="true" >
+        </activity>
+        
+        <activity
+            android:name="com.mylove.tv.rksetting.update.FileSelector"
+            android:theme="@style/Theme.Settings.Transparent"
+            android:configChanges="keyboard|keyboardHidden|navigation"
+            android:excludeFromRecents="true" >
+        </activity>
+        
+        <service android:name="com.mylove.tv.rksetting.update.RKUpdateService">
+            <intent-filter>
+                <action android:name="android.rockchip.update.service"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
+        
+        <activity android:name="com.mylove.tv.rksetting.update.FirmwareUpdatingActivity" android:exported="true"
+            android:theme="@android:style/Theme.Holo.Dialog"
+            android:excludeFromRecents="true"
+            android:multiprocess="false"/>
+
+        <activity android:name="com.mylove.tv.rksetting.update.UpdateAndRebootActivity"
+                android:theme="@android:style/Theme.Holo.Dialog"
+                android:multiprocess="false"
+                android:excludeFromRecents="true">
         </activity>
         
         <activity

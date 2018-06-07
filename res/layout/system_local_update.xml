@@ -20,7 +20,7 @@
         android:layout_marginTop="20.0dip"
         android:gravity="center">
         <TextView
-	        android:layout_width="fill_parent"
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
 	        android:singleLine="true"
@@ -28,8 +28,8 @@
 	        android:textSize="22.0sp" />
         
         <TextView
-	        android:id="@+id/local_current_version"
-	        android:layout_width="fill_parent"
+	        android:id="@+id/local_current_model"
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
 	        android:layout_marginLeft="10dp"
@@ -38,7 +38,7 @@
 	        android:textSize="22.0sp" />
         
         <TextView
-	        android:layout_width="fill_parent"
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="50dp"
 	        android:gravity="center"
@@ -48,7 +48,7 @@
         
         <TextView
 	        android:id="@+id/local_current_version"
-	        android:layout_width="fill_parent"
+	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:gravity="center"
 	        android:layout_marginLeft="10dp"

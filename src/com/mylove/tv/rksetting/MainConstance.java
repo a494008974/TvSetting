@@ -26,11 +26,11 @@ public class MainConstance {
 		};
 	
 	public static int[] TITLE = {R.string.connectivity_network, R.string.device_sound,R.string.system_date_time,R.string.bugreport_title, 
-							     R.string.more_settings, R.string.about_system_update, R.string.projector_settings, R.string.about_preference};
+							     R.string.settings_app_name, R.string.about_system_update, R.string.projector_settings, R.string.about_preference};
 	
 	public static Class[] clazz = {
 		NetworkActivity.class,SoundActivity.class,DateTimeActivity.class,UserBackupActivity.class,
-		SystemActivity.class,SystemUpdateActivity.class,ProjectorActivity.class,AboutActivity.class
+		MainSettings.class,SystemUpdateActivity.class,ProjectorActivity.class,AboutActivity.class
 		};
 	
 	

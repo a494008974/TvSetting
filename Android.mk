@@ -29,7 +29,9 @@ LOCAL_STATIC_JAVA_LIBRARIES := \
     android-support-v7-appcompat \
     android-support-v14-preference \
     android-support-v17-preference-leanback \
-    android-support-v17-leanback
+    android-support-v17-leanback \
+    down \
+	gson
 
 LOCAL_RESOURCE_DIR := \
     $(LOCAL_PATH)/res \
@@ -49,4 +51,10 @@ LOCAL_SRC_FILES := \
 LOCAL_JNI_SHARED_LIBRARIES := libtvsettings-jni
 include frameworks/base/packages/SettingsLib/common.mk
 include $(BUILD_PACKAGE)
+
+include $(CLEAR_VARS)
+LOCAL_PREBUILT_STATIC_JAVA_LIBRARIES := down:libs/down.jar \
+										gson:libs/gson-2.8.0.jar
+include $(BUILD_MULTI_PREBUILT)
+
 include $(LOCAL_PATH)/jni/Android.mk

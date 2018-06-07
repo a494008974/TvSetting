@@ -3,7 +3,7 @@ package com.mylove.tv.rksetting.update;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import org.apache.http.client.HttpClient;
+//import org.apache.http.client.HttpClient;
 
 import android.app.Activity;
 import android.app.Notification;
@@ -38,7 +38,7 @@ public class PackageDownloadActivity extends Activity {
 	private Context mContext;
 	private static PowerManager.WakeLock mWakeLock;
 	private String WAKELOCK_KEY = "myDownload";
-	private HttpClient mHttpClient;
+//	private HttpClient mHttpClient;
 	private ProgressBar mProgressBar;
 //	private HTTPdownloadHandler mHttpDownloadHandler;
 	private Button mBtnControl;

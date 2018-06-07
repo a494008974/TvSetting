@@ -49,7 +49,7 @@ public class SystemRKUpdateActivity extends Activity implements View.OnClickList
         }else{
         	Intent serviceIntent = new Intent(this, RKUpdateService.class);
             serviceIntent.putExtra("command", RKUpdateService.COMMAND_CHECK_REMOTE_UPDATING);
-            serviceIntent.putExtra("delay", 25000);
+            serviceIntent.putExtra("delay", 0);
             startService(serviceIntent);
         }
 		
@@ -64,7 +64,7 @@ public class SystemRKUpdateActivity extends Activity implements View.OnClickList
 	        if (file != null) {
 	        	Intent serviceIntent = new Intent(this, RKUpdateService.class);
 	            serviceIntent.putExtra("command", RKUpdateService.COMMAND_CHECK_LOCAL_UPDATING);
-	            serviceIntent.putExtra("delay", 100);
+	            serviceIntent.putExtra("delay", 0);
 	            serviceIntent.putExtra("localPath", file);
 	            startService(serviceIntent);
 	        }

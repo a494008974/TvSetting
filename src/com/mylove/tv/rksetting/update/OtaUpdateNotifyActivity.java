@@ -45,6 +45,7 @@ public class OtaUpdateNotifyActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		System.out.println("***************************OtaUpdateNotifyActivity********************************");
 		mContext = this;
 		mContext.bindService(new Intent(mContext, RKUpdateService.class), mConnection, Context.BIND_AUTO_CREATE);
 		requestWindowFeature(Window.FEATURE_LEFT_ICON);
@@ -87,8 +88,12 @@ public class OtaUpdateNotifyActivity extends Activity {
 		
         Button btn_ok = (Button)this.findViewById(R.id.button_ok);
 		Button btn_cancel = (Button)this.findViewById(R.id.button_cancel);
-		if(mForceUpdate.equals("1"))
+		
+		btn_ok.requestFocus();
+		
+		if("1".equals(mForceUpdate))
 			btn_cancel.setVisibility(View.GONE);
+		
 		btn_ok.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {

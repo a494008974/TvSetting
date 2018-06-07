@@ -32,6 +32,11 @@ import android.widget.ProgressBar;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.android.tv.settings.R;
+import com.mylove.down.DownloadCallback;
+import com.mylove.down.DownloadRecord;
+import com.mylove.down.DownloadRequest;
+import com.mylove.down.DownloadUtil;
 
 public class PackageDownloadActivity extends Activity {
 	private String TAG = "PackageDownloadActivity";
@@ -73,7 +78,8 @@ public class PackageDownloadActivity extends Activity {
 	public static final int DOWNLOAD_PROTOCOL_FTP = 1;
 
 	private String mForceUpdate =null;
-
+	
+	private String taskId;
 	private ServiceConnection mConnection = new ServiceConnection() { 
         public void onServiceConnected(ComponentName className, IBinder service) { 
         	mBinder = (RKUpdateService.LocalBinder)service;
@@ -89,33 +95,37 @@ public class PackageDownloadActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-//        mContext = this;
+        mContext = this;
 //        mHttpUri = null;
-//        Intent intent = getIntent();
-//        String uriStr = intent.getStringExtra("uri");
-//        if(uriStr == null) {
-//        	return;
-//        }
+        Intent intent = getIntent();
+        String uriStr = intent.getStringExtra("uri");
+        mFileName = intent.getStringExtra("OtaPackageName");
+		mForceUpdate = intent.getStringExtra("ForceUpdate");
+        if(uriStr == null) {
+        	return;
+        }
 //        
-//        setContentView(R.layout.package_download);
-//        setFinishOnTouchOutside(false);
-//        	        
-//        if(uriStr.startsWith("ftp://")) {
-//        	mDownloadProtocol = DOWNLOAD_PROTOCOL_FTP;
-//        	mFTPRequest = parseFtpUri(uriStr);
-//        }else {
-//        	mDownloadProtocol = DOWNLOAD_PROTOCOL_HTTP;
-//        	try {
-//				mHttpUri = new URI(uriStr);
-//			} catch (URISyntaxException e) {
-//				e.printStackTrace();
-//			}
-//        }
-//        
-//        mContext.bindService(new Intent(mContext, RKUpdateService.class), mConnection, Context.BIND_AUTO_CREATE);
+        setContentView(R.layout.package_download);
+        setFinishOnTouchOutside(false);
+        mContext.bindService(new Intent(mContext, RKUpdateService.class), mConnection, Context.BIND_AUTO_CREATE);
 //		
-//		mFileName = intent.getStringExtra("OtaPackageName");
-//		mForceUpdate = intent.getStringExtra("ForceUpdate");
+        mProgressBar = (ProgressBar)findViewById(R.id.progress_horizontal);
+        mProgressBar.setProgress(0);
+        mRemainTimeTV = (TextView)findViewById(R.id.download_info_remaining);
+        mDownloadRateTV = (TextView)findViewById(R.id.download_info_rate);
+        mCompletedTV = (TextView)findViewById(R.id.progress_completed);
+        
+        downPack(uriStr);
+        
+//		  Intent intent = new Intent();
+//        intent.setClass(mContext, UpdateAndRebootActivity.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        intent.putExtra(RKUpdateService.EXTRA_IMAGE_PATH, RKUpdateService.FLASH_ROOT + "/" + mFileName);
+//        startActivity(intent);
+//        finish();
+        
+        
+        
 //        //not finish activity
 //        PackageManager pm = getPackageManager();  
 //        homeInfo = pm.resolveActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME), 0);
@@ -130,12 +140,10 @@ public class PackageDownloadActivity extends Activity {
 //    	
 //    	PowerManager powerManager = (PowerManager) this.getSystemService(this.POWER_SERVICE);
 //    	mWakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, WAKELOCK_KEY);
-//        mProgressBar = (ProgressBar)findViewById(R.id.progress_horizontal);
+        
 //        mBtnControl = (Button)findViewById(R.id.btn_control);
 //        mBtnCancel = (Button)findViewById(R.id.button_cancel);
-//        mRemainTimeTV = (TextView)findViewById(R.id.download_info_remaining);
-//        mDownloadRateTV = (TextView)findViewById(R.id.download_info_rate);
-//        mCompletedTV = (TextView)findViewById(R.id.progress_completed);
+        
 //        //mTxtState = (TextView)findViewById(R.id.txt_state);
 //        
 //        //mTxtState.setText("");
@@ -221,6 +229,46 @@ public class PackageDownloadActivity extends Activity {
 //		mBtnControl.setFocusable(false);
 		
     }
+
+	private void downPack(String uriStr) {
+		DownloadUtil.get().init(this);
+        
+        DownloadUtil.get().registerListener(this, new DownloadCallback(){
+
+			@Override
+			public void onFinish(DownloadRecord record) {
+				// TODO Auto-generated method stub
+				super.onFinish(record);
+				
+				Intent intent = new Intent();
+		        intent.setClass(mContext, UpdateAndRebootActivity.class);
+		        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		        intent.putExtra(RKUpdateService.EXTRA_IMAGE_PATH, RKUpdateService.FLASH_ROOT + "/" + mFileName);
+		        startActivity(intent);
+		        PackageDownloadActivity.this.finish();
+			}
+
+			@Override
+			public void onProgress(DownloadRecord record) {
+				// TODO Auto-generated method stub
+				super.onProgress(record);
+				int percent = record.getProgress();
+				mCompletedTV.setText(String.valueOf(percent) + "%");
+				mProgressBar.setProgress(percent);
+			}
+			
+        });
+        mFileName = mFileName+System.currentTimeMillis();
+        
+        DownloadRequest request = DownloadRequest.newBuilder()
+        							.downloadUrl(uriStr)
+        						  	.downloadDir(RKUpdateService.FLASH_ROOT)
+        						  	.downloadName(mFileName)
+        							.build();
+        taskId = request.getId();
+        
+        DownloadUtil.get().enqueue(request);
+	}
     
 //    private class HTTPdownloadHandler extends Handler {
 //
@@ -395,6 +443,11 @@ public class PackageDownloadActivity extends Activity {
 		}
 		mContext.unbindService(mConnection);
 		super.onDestroy();
+		
+		if(taskId != null){
+			DownloadUtil.get().cancel(taskId);
+		}
+		
 	}
 
 	@Override

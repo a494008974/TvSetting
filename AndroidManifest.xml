@@ -45,6 +45,33 @@
         android:defaultToDeviceProtectedStorage="true"
         android:directBootAware="true">
 
+        
+        <receiver android:name="com.mylove.tv.rksetting.update.RKUpdateReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_STATE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.CHECK_UPDATE_BY_HAND" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="p03.2.found.a.otapackage" />
+            </intent-filter>
+        </receiver>
+        
         <activity
             android:name="com.mylove.tv.rksetting.MainActivity"
             android:excludeFromRecents="true"
@@ -52,7 +79,22 @@
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:label="@string/settings_app_name"
             android:exported="true" >
-            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.settings.SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Intent filter used to display this activity as a settings
+                 entry point in the LeanbackLauncher -->
+            <intent-filter
+                android:priority="3"
+                android:label="@string/launcher_settings_app_name"
+                android:icon="@drawable/ic_settings_launcher_icon" >
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LEANBACK_SETTINGS" />
+            </intent-filter>
         </activity>
         
         <activity
@@ -138,22 +180,7 @@
             android:theme="@style/Theme.Settings.Transparent"
             android:configChanges="keyboard|keyboardHidden|navigation"
             android:label="@string/settings_app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.settings.SETTINGS" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-            <!-- Intent filter used to display this activity as a settings
-                 entry point in the LeanbackLauncher -->
-            <intent-filter
-                android:priority="3"
-                android:label="@string/launcher_settings_app_name"
-                android:icon="@drawable/ic_settings_launcher_icon" >
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LEANBACK_SETTINGS" />
-            </intent-filter>
+            
         </activity>
 
 		<activity

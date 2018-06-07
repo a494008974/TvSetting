@@ -3,10 +3,14 @@ package com.mylove.tv.rksetting.update;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.security.GeneralSecurityException;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 //import org.apache.http.Header;
 //import org.apache.http.HttpResponse;
@@ -32,6 +36,7 @@ import android.os.RecoverySystem;
 import android.util.Log;
 import android.widget.Toast;
 import android.os.SystemProperties;
+import com.android.tv.settings.R;
 
 public class RKUpdateService extends Service {
 	public static final String VERSION = "1.8.0";
@@ -385,13 +390,13 @@ public class RKUpdateService extends Service {
                     			startNotifyActivity();
                     		}else {
                     			LOG("no find remote update package...");
-//                    			myMakeToast(mContext.getString(R.string.current_new));
+                    			myMakeToast(mContext.getString(R.string.current_new));
                     		}
                 			break;
 	                	}catch(Exception e) {
 	                		//e.printStackTrace();
 	                		LOG("request remote server error...");
-//	                		myMakeToast(mContext.getString(R.string.current_new));
+	                		myMakeToast(mContext.getString(R.string.current_new));
 	                	}
 	                	
 	                	try{
@@ -698,15 +703,68 @@ public class RKUpdateService extends Service {
 
 	}  
     private void myMakeToast(CharSequence msg) {
-    	if(mIsOtaCheckByHand) {
+//    	if(mIsOtaCheckByHand) {
     		makeToast(msg);
-    	}	
+//    	}	
     }
     
-    private boolean requestRemoteServerForUpdate(URI remote) throws IOException{
-//		if(remote == null) {
-//			return false;
-//		}
+    private boolean requestRemoteServerForUpdate(URI remote) throws Exception{
+		if(remote == null) {
+			return false;
+		}
+		URL url = remote.toURL();
+		HttpURLConnection opConnection = (HttpURLConnection) url.openConnection();
+		
+        opConnection.setConnectTimeout(5000);
+        opConnection.setReadTimeout(5000);
+        opConnection.setRequestMethod("GET");
+        opConnection.connect();
+        if (opConnection.getResponseCode()==200) {
+        	Map<String, List<String>> map = opConnection.getHeaderFields();
+        	
+        	List<String> headLength = map.get("OtaPackageLength");
+        	if(headLength != null && headLength.size() > 0){
+        		mOtaPackageLength = headLength.get(0);
+        	}else{
+        		return false;
+        	}
+        	
+        	List<String> headName = map.get("OtaPackageName");
+        	if(headName != null && headName.size() > 0){
+        		mOtaPackageName = headName.get(0);
+        	}else{
+        		return false;
+        	}
+        	
+        	List<String> headVersion = map.get("OtaPackageVersion");
+        	if(headVersion != null && headVersion.size() > 0){
+        		mOtaPackageVersion = headVersion.get(0);
+        	}else{
+        		return false;
+        	}
+        	
+        	List<String> headForceupdate = map.get("OtaPackageForce");
+        	if(headForceupdate != null && headForceupdate.size() > 0){
+        		mForceUpdate = headForceupdate.get(0);
+        	}else{
+        		return false;
+        	}
+        	
+        	List<String> headTargetURI = map.get("OtaPackageUri");
+        	if(headTargetURI != null && headTargetURI.size() > 0){
+        		mTargetURI = headTargetURI.get(0);
+        	}else{
+        		return false;
+        	}
+        	
+        	List<String> headDescription = map.get("description");
+        	if(headDescription != null && headDescription.size() > 0){
+        		mDescription = new String(headDescription.get(0).getBytes("ISO8859_1"), "UTF-8");
+        	}
+        	
+        }else{
+        	return false;
+        }
 //
 ////		HttpClient httpClient = CustomerHttpClient.getHttpClient();
 //		HttpClient httpClient = null;
@@ -771,8 +829,8 @@ public class RKUpdateService extends Service {
 //	    	mTargetURI = "http://" + (mUseBackupHost? getRemoteHostBackup() : getRemoteHost()) + (mTargetURI.startsWith("/") ? mTargetURI : ("/" + mTargetURI));
 //	    }
 //	    
-//	    mSystemVersion = getSystemVersion();
-//	    
+	    mSystemVersion = getSystemVersion();
+	    
 //	    LOG("OtaPackageName = " + mOtaPackageName + " OtaPackageVersion = " + mOtaPackageVersion 
 //	    			+ " OtaPackageLength = " + mOtaPackageLength + " SystemVersion = " + mSystemVersion
 //	    			+ "OtaPackageUri = " + mTargetURI + " OtaForceUpdate= "+mForceUpdate);

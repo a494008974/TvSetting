@@ -229,7 +229,7 @@ public class RKUpdateService extends Service {
 						}
 
 						LOG("now try to start notifydialog activity!");
-						Intent intent = new Intent(mContext, SystemRKUpdateActivity.class);
+						Intent intent = new Intent(mContext, NotifyDeleteActivity.class);
 						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						intent.putExtra("flag", UPDATE_SUCCESS);
 						intent.putExtra("path", path);
@@ -238,7 +238,7 @@ public class RKUpdateService extends Service {
 						return;
 					} 
 					if(command.startsWith(COMMAND_FLAG_UPDATING)) {
-						Intent intent = new Intent(mContext, SystemRKUpdateActivity.class);
+						Intent intent = new Intent(mContext, NotifyDeleteActivity.class);
 						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						intent.putExtra("flag", UPDATE_FAILED);
 						intent.putExtra("path", path);
@@ -659,7 +659,7 @@ public class RKUpdateService extends Service {
     }
     
     private void startNotifyActivity() {
-    	Intent intent = new Intent(mContext, SystemRKUpdateActivity.class);
+    	Intent intent = new Intent(mContext, OtaUpdateNotifyActivity.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		intent.putExtra("uri", mTargetURI);
 		intent.putExtra("OtaPackageLength", mOtaPackageLength);

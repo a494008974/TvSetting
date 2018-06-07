@@ -111,6 +111,26 @@
                 android:excludeFromRecents="true">
         </activity>
         
+        <activity android:name="com.mylove.tv.rksetting.update.PackageDownloadActivity"
+            android:theme="@android:style/Theme.Holo.Dialog"  
+        	android:launchMode="singleInstance"
+        	android:multiprocess="false"
+        	android:excludeFromRecents="true">
+        </activity>
+        
+        <activity android:name="com.mylove.tv.rksetting.update.NotifyDeleteActivity"
+        	android:theme="@android:style/Theme.Holo.Dialog"  
+        	android:multiprocess="false"
+        	android:excludeFromRecents="true">
+		</activity>
+		
+        <activity android:name="com.mylove.tv.rksetting.update.OtaUpdateNotifyActivity"
+        	android:theme="@android:style/Theme.Holo.Dialog"  
+        	android:excludeFromRecents="true"
+        	android:launchMode="singleInstance">
+		</activity>
+        
+        
         <activity
             android:name=".MainSettings"
             android:excludeFromRecents="true"

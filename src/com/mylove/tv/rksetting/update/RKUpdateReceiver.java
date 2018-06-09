@@ -53,10 +53,10 @@ public class RKUpdateReceiver extends BroadcastReceiver
         if (action.equals(Intent.ACTION_BOOT_COMPLETED)) {
             Log.d(TAG, "RKUpdateReceiver recv ACTION_BOOT_COMPLETED.");
             //serviceIntent = new Intent("android.rockchip.update.service");
-            serviceIntent = new Intent(context, RKUpdateService.class);
-            serviceIntent.putExtra("command", RKUpdateService.COMMAND_CHECK_LOCAL_UPDATING);
-            serviceIntent.putExtra("delay", 20000);
-            context.startService(serviceIntent);
+            //serviceIntent = new Intent(context, RKUpdateService.class);
+            //serviceIntent.putExtra("command", RKUpdateService.COMMAND_CHECK_LOCAL_UPDATING);
+            //serviceIntent.putExtra("delay", 20000);
+            //context.startService(serviceIntent);
             
             //serviceIntent = new Intent("android.rockchip.update.service");
             serviceIntent = new Intent(context, RKUpdateService.class);

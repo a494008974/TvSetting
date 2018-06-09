@@ -68,10 +68,10 @@ public class RKUpdateReceiver extends BroadcastReceiver
         }else if( action.equals(Intent.ACTION_MEDIA_MOUNTED) && isBootCompleted) {              
             String[] path = { intent.getData().getPath() };
             //serviceIntent = new Intent("android.rockchip.update.service");
-            serviceIntent = new Intent(context, RKUpdateService.class);
-            serviceIntent.putExtra("command", RKUpdateService.COMMAND_CHECK_LOCAL_UPDATING);
-            serviceIntent.putExtra("delay", 5000);
-            context.startService(serviceIntent);
+            //serviceIntent = new Intent(context, RKUpdateService.class);
+            //serviceIntent.putExtra("command", RKUpdateService.COMMAND_CHECK_LOCAL_UPDATING);
+            //serviceIntent.putExtra("delay", 5000);
+            //context.startService(serviceIntent);
             Log.d(TAG, "media is mounted to '" + path[0] + "'. To check local update." );
  
         }else 

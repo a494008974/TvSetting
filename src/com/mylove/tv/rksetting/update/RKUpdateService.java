@@ -346,7 +346,7 @@ public class RKUpdateService extends Service {
 							String currentVersion = null;
 							
 							//if it is rkimage, check the image
-                            if("img".endsWith(path)){
+                            if(path != null && path.endsWith("img")){
 								if(!checkRKimage(path)){
 									LOG("WorkHandler::handleMessage() : not a valid rkimage !!");
 									return;	
